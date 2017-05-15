@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习template制作模板</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <h1>学习template制作模板</h1>
+        <hr/>
+        <div id="app">
+            {{msg}}
+        </div>
+        <template id="demo">
+            <h3 style="color:#00dd11;">我是用html标签建立的模板</h3>
+        </template>
+        <script type="x-template" id="demo1">
+            <h3 style="color:#290290">我是在script标签里写的模板</h3>
+        </script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'hello world'
+                },
+                //template: `<h2 style="color:red">我是用template选项建立的模板语言</h2>`
+               //template: '#demo'
+                template: '#demo1'
+            })
+        </script>
+    </body>
+</html>

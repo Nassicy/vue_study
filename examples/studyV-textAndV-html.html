@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>学习v-text和v-html指令</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <h1>v-text和v-html指令</h1>
+        <hr/>
+        <div id="app">
+            <span>{{msg}}</span> ==<span v-text="msg"></span>
+            <p v-html="msgHtml"></p>
+        </div>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'hi vuex!',
+                    msgHtml:'<h3>我是v-html指令输出的hi Vue</h3>'
+                }
+            });
+            //v-text和{{xxx}}区别：
+            //{{}}在网速很慢，或者js出错时会暴露{{xxx}}, v-text则不会
+            //v-html指令，在生产环境中动态渲染HTML是非常危险的，因为容易导致XSS攻击。所以只能在可信的内容上使用v-html，永远不要在用户提交和可操作的网页上使用。
+        </script>
+    </body>
+</html>

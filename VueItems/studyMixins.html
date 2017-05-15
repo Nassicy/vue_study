@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习Mixins 混入选项操作</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+    <h1>学习Mixins 混入选项操作</h1>
+    <hr/>
+    <div id="app">
+        <p>num:{{num}}</p>
+        <p><button type="button" @click="add">增加数量</button></p>
+    </div>
+    <script type="text/javascript">
+        var addLog = {
+            updated: function(){
+                console.log("数据发生变化，变成"+ this.num+".");
+            }
+        };
+        Vue.mixin({
+            updated: function() {
+                console.log("我是全局被混入的。");
+            }
+        });
+        var app = new Vue({
+            el:'#app',
+            data: {
+                num:1
+            },
+            methods: {
+                add: function(){
+                    this.num++;
+                },
+            },
+            updated: function() {
+                console.log("构造器里的updated方法");
+            },
+            mixins: [addLog]
+        });
+    </script>
+    </body>
+</html>

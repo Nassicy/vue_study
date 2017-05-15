@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习Methods Option  方法选项</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+    <h1>学习Methods Option  方法选项</h1>
+    <hr/>
+    <div id="app">
+        {{count}}
+        <p><button type="button" @click="addCount($event, 3)">增加</button> </p>
+        <p><button type="button" @click="minusCount">减小</button> </p>
+        <p><btn @click.native="minusCount"></btn></p>
+    </div>
+    <!-- 作用域外部调用构造器里的方法，这种调用，代表代码组织的不够好，不建议使用 -->
+    <button type="button" onclick="app.minusCount">外部构造器的按钮</button>
+    <script type="text/javascript">
+        var btn = {
+            template: `<button>我是组件构造的外部按钮</button>`
+        };
+        var app = new Vue({
+            el: '#app',
+            data:{
+                count:0
+            },
+            components: {
+                "btn": btn
+            },
+            methods: {
+                addCount: function(event,num){
+                    console.log(event);
+                    if(num!=''){
+                        this.count += num;
+                    }
+
+                },
+                minusCount: function() {
+                    this.count--;
+                }
+            }
+        });
+    </script>
+    <!-- methods方法，1.可以向methods中传递参数，2.$event参数，关于你点击鼠标的一些事件和属性
+    3.可以利用.native修饰器让组件调用构造器里的方法-->
+    </body>
+</html>

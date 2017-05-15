@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习Extends Option  扩展选项</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+    <h1>学习Extends Option  扩展选项</h1>
+    <hr/>
+    <div id="app">
+        ${num}
+        <p><button type="button" @click="add">增加</button> </p>
+    </div>
+    <script type="text/javascript">
+        var eatendsObj = {
+            created: function() {
+                console.log("我是被扩展出来的");
+            },
+            methods: {
+                add: function() {
+                    console.log("我是被扩展出来的方法！");
+                }
+            }
+        };
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num: 1
+            },
+            methods: {
+                add: function() {
+                    console.log("我是原生方法 ");
+                    this.num++;
+                    console.log("构造器里的updated方法");
+                }
+            },
+            extends:eatendsObj,
+            delimiters: ['${','}']
+        });
+        //delimiters：改变我们插值的符合
+    </script>
+    </body>
+</html>

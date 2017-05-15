@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习实例事件</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <h1>学习实例事件</h1>
+        <hr/>
+        <div id="app">
+            {{count}}
+            <p><button type="button" @click="add">增加</button></p>
+        </div>
+        <p><button type="button" onclick="reduce()">减少</button></p>
+        <p><button type="button" onclick="reduceOnce()">只执行1次</button></p>
+        <p><button type="button" onclick="offBtn()">关闭事件</button></p>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data:{
+                    count: 1
+                },
+                methods: {
+                    add:function() {
+                        this.count++;
+                    }
+                }
+            });
+            //$on接收两个参数，第一个参数是调用时的事件名称，第二个参数是一个匿名方法
+            app.$on('reduce',function(){
+                console.log("执行了reduce()");
+                this.count--;
+            });
+            //如果按钮在作用域外部，可以利用$emit来执行。
+            function reduce() {
+                app.$emit('reduce');
+            }
+            app.$once('reduceOnce',function() {
+                console.log("只执行了1次");
+                this.num--;
+            })
+            function reduceOnce() {
+                app.$emit('reduceOnce');
+            }
+            function offBtn() {
+                app.$off('reduce');
+            }
+            //实例事件就是在构造器外部写一个调用构造器内部的方法。这样写的好处是可以通过这种写法在构造器外部调用构造器内部的数据。
+        </script>
+    </body>
+</html>

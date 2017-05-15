@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>v-bind指令</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+        <style type="text/css" media="screen">
+            .classA{
+                line-height:30px;
+                color:#ccc;
+                margin-bottom: 10px;
+            }
+            .classB{
+                background:#DDEE00;
+                font-size:24px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <img :src="imgSrc" alt="" width="200px">
+            <hr />
+            <!-- 直接绑定class样式 -->
+            <div :class="className">1.绑定className</div>
+            <!-- 绑定classA并进行判断，在isOk为true时显示样式，在isOk为false时不显示样式 -->
+            <div :class="{classA:isOk}">2.绑定class中的判断</div>
+            <!-- 绑定class中的数组 -->
+            <div :class="[classA,classB]">3.绑定class中的数组</div>
+            <!-- 绑定class中的三元表达式判断 -->
+            <div :class="isOk?classA:classB">4.绑定class中的三元表达式判断</div>
+            <!-- 绑定style -->
+            <div :style="{color:'red',fontSize:'24px'}">5.绑定style</div>
+            <!-- 用对象绑定style样式 -->
+            <div :style="styleObject">6.用对象绑定style样式</div>
+        </div>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    imgSrc: 'http://baidu.com/wp-content/uploads/2017/02/vue01-2.jpg',
+                    isOk:false,
+                    className:'classA',
+                    classA: 'classA',
+                    classB: 'classB',
+                    styleObject:{
+                        color:'red',
+                        lineheight:'32px'
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

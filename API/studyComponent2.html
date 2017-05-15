@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习Component组件props属性设置</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <h1>学习Component组件props属性设置</h1>
+        <hr/>
+        <div id="app">
+            <panda :where-from="name"></panda>
+        </div>
+        <script type="text/javascript">
+        // 定义属性我们需要用props选项，加上数组形式的属性名称，例如：props:[‘here’]。在组件的模板里读出属性值只需要用插值的形式
+        // 当属性中带'-'时，在html中用'-',在props中则是用小驼峰式写法
+            var app = new Vue({
+                el: '#app',
+                data:{
+                    name:'sichuan'
+                },
+                components: {
+                    "panda": {
+                        template: `<div style="color:red">熊猫来自 {{whereFrom }}.</div>`,
+                        //props: ['where']
+                        props: ['whereFrom']
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>

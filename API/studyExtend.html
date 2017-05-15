@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习Vue.extend构造器的延伸</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <h1>学习Vue.extend构造器的延伸</h1>
+        <hr/>
+        <author></author>
+        <div id="mount-point"></div>
+         <script type="text/javascript">
+            //自定义无参数标签
+            var authorExtend = Vue.extend({
+                template: "<p><a :href='authorUrl'>{{authorName}}</a></p>",
+                data: function(){
+                    return {
+                        authorName: 'nassicy',
+                        authorUrl: 'http://www.5iblog.com'
+                    };
+                }
+            });
+            //挂载到普通标签上
+            new authorExtend().$mount('author');
+            var Profile = Vue.extend({
+                template: '<p>{{firstName}}=={{lastName}}=={{alias}}</p>',
+                data: function() {
+                    return {
+                        firstName: 'nassicy',
+                        lastName: 'jack',
+                        alias: 'heisenberg'
+                    }
+                }
+            });
+            new Profile().$mount('#mount-point');
+         </script>
+    </body>
+</html>

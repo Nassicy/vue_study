@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习实例入门中的实例属性</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery-3.1.0.js"></script>
+    </head>
+    <body>
+        <h1>学习实例入门中的实例属性</h1>
+        <hr/>
+        <div id="app">
+            {{message}}
+        </div>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: 'hello Vue'
+                },
+                mounted: function() {
+                    $('#app').html("我是jquery实现的文字!");
+                },
+                methods: {
+                    add: function() {
+                        console.log("调用了add方法!");
+                    },
+                    printApp: function() {
+                        console.log(app);
+                    }
+                }
+            });
+            app.add();
+            app.printApp();
+        </script>
+    </body>
+</html>

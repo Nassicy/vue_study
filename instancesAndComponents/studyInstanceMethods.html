@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习实例方法</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <h1>学习实例方法</h1>
+        <hr/>
+        <div id="app">
+            {{message}}
+        </div>
+            <p><button type="button" onclick="unclick()">卸载挂载</button> </p>
+            <p><button type="button" onclick="updateData()">更新数据</button> </p>
+            <p><button type="button" onclick="tick()">修改数据</button> </p>
+        <script type="text/javascript">
+            //$mount方法，是用来挂载我们的扩展的
+             var extend = Vue.extend({
+                template:`<h2>我是extend扩展出来的东西--{{message}}</h2>`,
+                data: function(){
+                    return {
+                        message :'hello'
+                    };
+                },
+                mounted:function() {
+                    console.log("mounted 被创建!");
+                },
+                destroy:function(){
+                    console.log("mounted被卸载");
+                },
+                updated: function() {
+                    console.log("更新之后");
+                }
+            });
+             var newExtend = new extend().$mount('#app');
+             function unclick() {
+                newExtend.$destroy();
+             }
+             function updateData() {
+                newExtend.$forceUpdate();
+             }
+             function tick() {
+                newExtend.message = "我是更新的数据";
+                newExtend.$nextTick(function(){
+                    console.log("message更新后我被调用了!");
+                });
+            }
+
+        </script>
+    </body>
+</html>

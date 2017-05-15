@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习component组件</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <h1>学习component组件</h1>
+        <hr/>
+        <div id="app">
+            <wqx></wqx>
+            <panda></panda>
+        </div>
+        <script type="text/javascript">
+            /*全局定义组件*/
+           Vue.component('wqx', {
+                template: `<div style="color:red">全局注册的wqx标签</div>`
+            });
+           var app = new Vue({
+                el: '#app',
+                components: {
+                    "panda":{
+                        template:`<div style="color:green;">局部注册的panda标签</div>`
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
